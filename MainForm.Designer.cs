@@ -39,6 +39,9 @@
             this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.area_k_km_q = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.population_k = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.данныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.печататьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCSV)).BeginInit();
@@ -47,7 +50,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.файлToolStripMenuItem,
+            this.данныеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -58,7 +62,8 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.открытьToolStripMenuItem,
-            this.сохранитьToolStripMenuItem});
+            this.сохранитьToolStripMenuItem,
+            this.печататьToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
@@ -143,6 +148,28 @@
             this.population_k.Name = "population_k";
             this.population_k.ReadOnly = true;
             // 
+            // данныеToolStripMenuItem
+            // 
+            this.данныеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьЗаписьToolStripMenuItem});
+            this.данныеToolStripMenuItem.Name = "данныеToolStripMenuItem";
+            this.данныеToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.данныеToolStripMenuItem.Text = "Данные";
+            // 
+            // добавитьЗаписьToolStripMenuItem
+            // 
+            this.добавитьЗаписьToolStripMenuItem.Name = "добавитьЗаписьToolStripMenuItem";
+            this.добавитьЗаписьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.добавитьЗаписьToolStripMenuItem.Text = "Добавить запись";
+            this.добавитьЗаписьToolStripMenuItem.Click += new System.EventHandler(this.добавитьЗаписьToolStripMenuItem_Click);
+            // 
+            // печататьToolStripMenuItem
+            // 
+            this.печататьToolStripMenuItem.Name = "печататьToolStripMenuItem";
+            this.печататьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.печататьToolStripMenuItem.Text = "Печатать";
+            this.печататьToolStripMenuItem.Click += new System.EventHandler(this.печататьToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,6 +203,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn state;
         private System.Windows.Forms.DataGridViewTextBoxColumn area_k_km_q;
         private System.Windows.Forms.DataGridViewTextBoxColumn population_k;
+        private System.Windows.Forms.ToolStripMenuItem данныеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem добавитьЗаписьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem печататьToolStripMenuItem;
     }
 }
 
