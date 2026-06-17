@@ -30,6 +30,7 @@ namespace practice4
             }
         }
 
+        //Для удобства
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -44,6 +45,8 @@ namespace practice4
             }
         }
 
+        //Задание 1. Создание файла - сохранение пустого файла тоже создание.
+        //И не пустого - сохранение.
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();

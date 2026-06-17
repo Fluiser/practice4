@@ -42,7 +42,6 @@ namespace practice4
             List<string> list = new List<string>();
             string str = "";
 
-            bool prevIsEcraned = false;
             bool isBegin = true;
             
             for(int i = 0; i < source.Length - 1; ++i)
@@ -64,7 +63,6 @@ namespace practice4
                 } else
                 {
                     str += c;
-                    prevIsEcraned = false;
                     isBegin = false;
                 }
             }
@@ -114,7 +112,7 @@ namespace practice4
         private static string strToCSVVal(string val)
         {
             return Regex.Replace(
-                    Regex.Replace(val, ";", "\";\"")
+                    val
                 , "\"", "\"\"");
         }
         public string getString()
