@@ -11,9 +11,10 @@ namespace practice4
 
     internal class CSVContainer
     {
-        private string[] CSVColumns = new string[] { "region", "state", "area_k_km_q", "population_k" };
-        private struct CSVRow
+        private string[] CSVColumns = new string[] { "id", "region", "state", "area_k_km_q", "population_k" };
+        public struct CSVRow
         {
+            public int id;
             public string region;
             public string state;
             public decimal area;
@@ -22,6 +23,8 @@ namespace practice4
 
 
         private List<CSVRow> _rows = new List<CSVRow>();
+
+        public List<CSVRow> rows => _rows;
 
         Decimal tryParseDecFromStr(string str)
         {
@@ -90,30 +93,37 @@ namespace practice4
                 
 
                 CSVRow row = new CSVRow();
-                row.region = values[0];
-                row.state = values[1];
 
-                row.area = tryParseDecFromStr(values[2]);
-                row.population = tryParseDecFromStr(values[3]);
+                int.TryParse(values[0], out row.id);
+                row.region = values[1];
+                row.state = values[2];
+
+                row.area = tryParseDecFromStr(values[3]);
+                row.population = tryParseDecFromStr(values[4]);
 
                 _rows.Add(row);
             }
 
             return true;
         }
+        public void clear()
+        {
+            _rows.Clear();
+        }
+
         private static string strToCSVVal(string val)
         {
             return Regex.Replace(
                     Regex.Replace(val, ";", "\";\"")
                 , "\"", "\"\"");
         }
-        public string getStr()
+        public string getString()
         {
             string s = string.Join(";", CSVColumns).ToLower().Trim() + "\n";
 
             foreach (var v in _rows)
             {
-                s += $"\"{strToCSVVal(v.region)}\";\"{strToCSVVal(v.state)}\";\"{v.area}\";\"{v.population}\"\n";
+                s += $"\"{v.id}\";\"{strToCSVVal(v.region)}\";\"{strToCSVVal(v.state)}\";\"{v.area}\";\"{v.population}\"\n";
             }
 
             return s;
