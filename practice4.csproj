@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditRecord.Designer.cs">
+      <DependentUpon>EditRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="CSVContainer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -55,6 +61,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectMethodSort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectMethodSort.Designer.cs">
+      <DependentUpon>SelectMethodSort.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="EditRecord.resx">
+      <DependentUpon>EditRecord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SelectMethodSort.resx">
+      <DependentUpon>SelectMethodSort.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

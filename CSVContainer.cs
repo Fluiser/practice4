@@ -9,7 +9,7 @@ namespace practice4
 {
 
 
-    internal class CSVContainer
+    public class CSVContainer
     {
         private string[] CSVColumns = new string[] { "id", "region", "state", "area_k_km_q", "population_k" };
         public struct CSVRow
@@ -35,6 +35,26 @@ namespace practice4
             {
                 return new Decimal(0);
             }
+        }
+
+        public void addRecord(CSVRow row)
+        {
+            _rows.Add(row);
+        }
+
+        public void replaceRecord(int index, CSVRow row)
+        {
+            _rows[index] = row;
+        }
+
+        public void deleteRecord(int index)
+        {
+            _rows.RemoveAt(index);
+        }
+
+        public void replaceRows(List<CSVRow> rows)
+        {
+            _rows = rows;
         }
 
         public List<string> parseCSVString(string source)

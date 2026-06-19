@@ -61,9 +61,16 @@ namespace practice4
             }
         }
 
+        // Задание 3. Добавление записи.
         private void добавитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            EditRecord form = new EditRecord();
+            CSVRow row = new CSVRow();
+            if(form.ShowDialog(ref row, _container))
+            {
+                _container.addRecord(row);
+            }
+            refreshViewData();
         }
         // Задание 2. Печать файла
         private void печататьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -169,6 +176,60 @@ namespace practice4
             currentX += wAr;
 
             g.DrawString(pop, font, brush, currentX, y);
+        }
+
+        //Задание 4. Корректировка записей.
+        private void изменитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(_container.rows.Count < 1 || gridViewCSV.SelectedCells.Count < 1)
+            {
+                MessageBox.Show("Отсутствуют записи или не выбрана запись для корректировки");
+                return;
+            }
+            int idx = gridViewCSV.SelectedCells[0].RowIndex;
+
+            CSVRow row = _container.rows[idx];
+
+            EditRecord form = new EditRecord();
+            if (form.ShowDialog(ref row, _container))
+            {
+                _container.replaceRecord(idx, row);
+            }
+            refreshViewData();
+        }
+
+        //Задание 5. Удаление одной и более записей в файле.
+        private void удалитьВыбранныеЗаписиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (gridViewCSV.SelectedCells.Count < 1) return;
+
+            if(MessageBox.Show(
+                    "Вы уверены?",
+                    "Точно?",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning
+                ) == DialogResult.OK)
+            {
+                int removed = 0;
+                var cells = gridViewCSV.SelectedCells.Cast<DataGridViewCell>().Select(cell => cell.RowIndex).Distinct();
+                foreach(int idx in cells)
+                {
+                    _container.deleteRecord(idx - removed++);
+                }
+                gridViewCSV.ClearSelection();
+
+
+                refreshViewData();
+            }
+        }
+
+        //Задание 6. Упорядочение записей
+        private void упорядочитьПоПолюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectMethodSort form = new SelectMethodSort();
+
+            if(form.ShowDialog(ref _container))
+                refreshViewData();
         }
     }
 }
