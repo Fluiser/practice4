@@ -53,6 +53,12 @@
       <DependentUpon>EditRecord.cs</DependentUpon>
     </Compile>
     <Compile Include="CSVContainer.cs" />
+    <Compile Include="GraphicsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraphicsView.Designer.cs">
+      <DependentUpon>GraphicsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     </Compile>
     <EmbeddedResource Include="EditRecord.resx">
       <DependentUpon>EditRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraphicsView.resx">
+      <DependentUpon>GraphicsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

@@ -73,13 +73,13 @@ namespace practice4
             refreshViewData();
         }
         // Задание 2. Печать файла
-        private void печататьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void печататьToolStripMenuItem_Click(object _, EventArgs __)
         {
             _currentRowIndex = 0;
 
             PrintDocument printDoc = new PrintDocument();
 
-            printDoc.PrintPage += new PrintPageEventHandler(PrintDoc_PrintPage);
+            printDoc.PrintPage += (object sender, PrintPageEventArgs e) => PrintDoc_PrintPage(sender, e, false);
 
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = printDoc;
@@ -91,7 +91,7 @@ namespace practice4
         }
 
         private int _currentRowIndex = 0;
-        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
+        private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e, bool calcFunc)
         {
             const int fontSize = 8;
             Font font = new Font("Arial", fontSize, FontStyle.Regular);
@@ -107,13 +107,20 @@ namespace practice4
             const float colWidthRegion = 270;
             const float colWidthState = 100;
             const float colWidthArea = 120;
-            const float colWidthPopulation = 50;
+            const float colWidthPopulation = 70;
+            const float colWidthDensity = 70;
 
             float rowHeight = font.GetHeight(e.Graphics) + 10;
 
-            DrawRow(e.Graphics, headerFont, brush, startX, currentY, "ID", "Регион", "Штат", "Площадь", "Население", colWidthId, colWidthRegion, colWidthState, colWidthArea, colWidthPopulation);
+            DrawRow(e.Graphics, 
+                headerFont, 
+                brush, 
+                startX, 
+                currentY, 
+                "ID", "Регион", "Штат", "Площадь", "Население", (calcFunc ? "Кол-во тыс. людей\n на тыс. кв. км" : ""), 
+                colWidthId, (calcFunc ? colWidthRegion - colWidthDensity : colWidthRegion), colWidthState, colWidthArea, colWidthPopulation, colWidthDensity);
 
-            currentY += rowHeight;
+            currentY += rowHeight*2;
             e.Graphics.DrawLine(linePen, startX, currentY, e.MarginBounds.Right, currentY);
             currentY += 5; 
 
@@ -135,7 +142,9 @@ namespace practice4
                     row.state,
                     row.area.ToString("N2"),
                     row.population.ToString("N0"),
-                    colWidthId, colWidthRegion, colWidthState, colWidthArea, colWidthPopulation
+                    (calcFunc ? (row.population/row.area).ToString("N2") : ""),
+
+                    colWidthId, (calcFunc ? colWidthRegion-colWidthDensity : colWidthRegion), colWidthState, colWidthArea, colWidthPopulation, colWidthDensity
                 );
 
                 currentY += rowHeight;
@@ -151,8 +160,8 @@ namespace practice4
         }
 
         private void DrawRow(Graphics g, Font font, Brush brush, float x, float y,
-                             string id, string region, string state, string area, string pop,
-                             float wId, float wReg, float wSt, float wAr, float wPop)
+                             string id, string region, string state, string area, string pop, string densityPopArea,
+                             float wId, float wReg, float wSt, float wAr, float wPop, float wDensityPA)
         {
             float currentX = x;
             float rowHeight = font.GetHeight(g) + 10; 
@@ -176,6 +185,10 @@ namespace practice4
             currentX += wAr;
 
             g.DrawString(pop, font, brush, currentX, y);
+            currentX += wPop;
+
+            if(densityPopArea.Length > 0)
+                g.DrawString(densityPopArea, font, brush, currentX, y);
         }
 
         //Задание 4. Корректировка записей.
@@ -230,6 +243,42 @@ namespace practice4
 
             if(form.ShowDialog(ref _container))
                 refreshViewData();
+        }
+
+        //Задание 7.  Итог. показатели
+        private void расчётПоказателейToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            const int cellIndex = 5;
+            for(int r = 0; r < gridViewCSV.RowCount-1; ++r)
+            {
+                var v = _container.rows[r];
+                gridViewCSV.Rows[r].Cells[cellIndex].Value = (v.population / v.area).ToString("N2");
+            }
+        }
+
+        //Задание 8. печать результирующего файла
+        private void печатьИтогРасчётовToolStripMenuItem_Click(object _, EventArgs __)
+        {
+            _currentRowIndex = 0;
+
+            PrintDocument printDoc = new PrintDocument();
+
+            printDoc.PrintPage += (object sender, PrintPageEventArgs e) => PrintDoc_PrintPage(sender, e, true);
+
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDoc;
+
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDoc.Print();
+            }
+        }
+
+        //Задание 9. Графический вывод
+        private void свобдныеГрафикиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GraphicsView graphicsView = new GraphicsView(_container);
+            graphicsView.ShowDialog();
         }
     }
 }

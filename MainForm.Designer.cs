@@ -37,6 +37,8 @@
             this.добавитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьЗаписьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьВыбранныеЗаписиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.упорядочитьПоПолюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.расчётПоказателейToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.gridViewCSV = new System.Windows.Forms.DataGridView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,7 +47,8 @@
             this.area_k_km_q = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.population_k = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subField = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.упорядочитьПоПолюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.печатьИтогРасчётовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.свобдныеГрафикиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCSV)).BeginInit();
@@ -99,7 +102,10 @@
             this.добавитьЗаписьToolStripMenuItem,
             this.изменитьЗаписьToolStripMenuItem,
             this.удалитьВыбранныеЗаписиToolStripMenuItem,
-            this.упорядочитьПоПолюToolStripMenuItem});
+            this.упорядочитьПоПолюToolStripMenuItem,
+            this.расчётПоказателейToolStripMenuItem,
+            this.печатьИтогРасчётовToolStripMenuItem,
+            this.свобдныеГрафикиToolStripMenuItem});
             this.данныеToolStripMenuItem.Name = "данныеToolStripMenuItem";
             this.данныеToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
             this.данныеToolStripMenuItem.Text = "Данные";
@@ -124,6 +130,20 @@
             this.удалитьВыбранныеЗаписиToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.удалитьВыбранныеЗаписиToolStripMenuItem.Text = "Удалить выбранные записи";
             this.удалитьВыбранныеЗаписиToolStripMenuItem.Click += new System.EventHandler(this.удалитьВыбранныеЗаписиToolStripMenuItem_Click);
+            // 
+            // упорядочитьПоПолюToolStripMenuItem
+            // 
+            this.упорядочитьПоПолюToolStripMenuItem.Name = "упорядочитьПоПолюToolStripMenuItem";
+            this.упорядочитьПоПолюToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.упорядочитьПоПолюToolStripMenuItem.Text = "Упорядочить по полю";
+            this.упорядочитьПоПолюToolStripMenuItem.Click += new System.EventHandler(this.упорядочитьПоПолюToolStripMenuItem_Click);
+            // 
+            // расчётПоказателейToolStripMenuItem
+            // 
+            this.расчётПоказателейToolStripMenuItem.Name = "расчётПоказателейToolStripMenuItem";
+            this.расчётПоказателейToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.расчётПоказателейToolStripMenuItem.Text = "Расчёт показателей";
+            this.расчётПоказателейToolStripMenuItem.Click += new System.EventHandler(this.расчётПоказателейToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -194,15 +214,22 @@
             // 
             // subField
             // 
-            this.subField.HeaderText = "Плотность людей на кв. км";
+            this.subField.HeaderText = "Плотность людей (тыс.) на тыс. кв. км";
             this.subField.Name = "subField";
             // 
-            // упорядочитьПоПолюToolStripMenuItem
+            // печатьИтогРасчётовToolStripMenuItem
             // 
-            this.упорядочитьПоПолюToolStripMenuItem.Name = "упорядочитьПоПолюToolStripMenuItem";
-            this.упорядочитьПоПолюToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
-            this.упорядочитьПоПолюToolStripMenuItem.Text = "Упорядочить по полю";
-            this.упорядочитьПоПолюToolStripMenuItem.Click += new System.EventHandler(this.упорядочитьПоПолюToolStripMenuItem_Click);
+            this.печатьИтогРасчётовToolStripMenuItem.Name = "печатьИтогРасчётовToolStripMenuItem";
+            this.печатьИтогРасчётовToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.печатьИтогРасчётовToolStripMenuItem.Text = "Печать итог. расчётов";
+            this.печатьИтогРасчётовToolStripMenuItem.Click += new System.EventHandler(this.печатьИтогРасчётовToolStripMenuItem_Click);
+            // 
+            // свобдныеГрафикиToolStripMenuItem
+            // 
+            this.свобдныеГрафикиToolStripMenuItem.Name = "свобдныеГрафикиToolStripMenuItem";
+            this.свобдныеГрафикиToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.свобдныеГрафикиToolStripMenuItem.Text = "Сводные графики";
+            this.свобдныеГрафикиToolStripMenuItem.Click += new System.EventHandler(this.свобдныеГрафикиToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -237,13 +264,16 @@
         private System.Windows.Forms.ToolStripMenuItem печататьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьЗаписьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьВыбранныеЗаписиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem упорядочитьПоПолюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem расчётПоказателейToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn region;
         private System.Windows.Forms.DataGridViewTextBoxColumn state;
         private System.Windows.Forms.DataGridViewTextBoxColumn area_k_km_q;
         private System.Windows.Forms.DataGridViewTextBoxColumn population_k;
         private System.Windows.Forms.DataGridViewTextBoxColumn subField;
-        private System.Windows.Forms.ToolStripMenuItem упорядочитьПоПолюToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem печатьИтогРасчётовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem свобдныеГрафикиToolStripMenuItem;
     }
 }
 
