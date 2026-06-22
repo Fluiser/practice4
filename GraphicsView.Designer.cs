@@ -71,6 +71,8 @@
             this.pictureBox1.Size = new System.Drawing.Size(481, 459);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Resize += pictureBox1_Resize;
+            this.pictureBox1.Paint += pictureBox1_Paint;
             // 
             // dataGridView1
             // 

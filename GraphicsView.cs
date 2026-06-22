@@ -19,6 +19,7 @@ namespace practice4
         };
 
         Color[] colors = new Color[] { Color.Red, Color.Orange, Color.Green, Color.Yellow, Color.BlueViolet };
+        Brush[] brushes = new Brush[] { Brushes.Red, Brushes.Orange, Brushes.Green, Brushes.Yellow, Brushes.BlueViolet};
 
         CSVContainer _container;
 
@@ -68,7 +69,19 @@ namespace practice4
             Graphics g = e.Graphics;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
+            float size = pictureBox1.Width > pictureBox1.Height ? pictureBox1.Height : pictureBox1.Width;
+            float offsetX = (pictureBox1.Width - size) / 2.0f;
+            float offsetY = (pictureBox1.Height - size) / 2.0f;
 
+            int idxBrush = 0;
+            float lastAngle = 0.0f;
+            foreach(var v in statistics)
+            {
+                float angleFill = 360.0f * v.Value.percent;
+                g.FillPie(brushes[idxBrush++ % brushes.Length], offsetX, offsetY, size, size, lastAngle, angleFill);
+
+                lastAngle += angleFill;
+            }
         }
 
         private void pictureBox1_Resize(object sender, EventArgs e)
