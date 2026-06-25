@@ -219,7 +219,7 @@ namespace practice4
 
             if(MessageBox.Show(
                     "Вы уверены?",
-                    "Точно?",
+                    "Удалить записи?",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Warning
                 ) == DialogResult.OK)
@@ -228,7 +228,8 @@ namespace practice4
                 var cells = gridViewCSV.SelectedCells.Cast<DataGridViewCell>().Select(cell => cell.RowIndex).Distinct().OrderBy(i => i);
                 foreach(int idx in cells)
                 {
-                    _container.deleteRecord(idx - removed++);
+                    if(idx >= 0 && (idx-removed) < _container.rows.Count)
+                        _container.deleteRecord(idx - removed++);
                 }
                 gridViewCSV.ClearSelection();
 
