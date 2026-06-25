@@ -194,12 +194,13 @@ namespace practice4
         //Задание 4. Корректировка записей.
         private void изменитьЗаписьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_container.rows.Count < 1 || gridViewCSV.SelectedCells.Count < 1)
+            int idx = gridViewCSV.SelectedCells[0].RowIndex;
+
+            if (_container.rows.Count < 1 || gridViewCSV.SelectedCells.Count < 1 || idx < 0 || idx >= _container.rows.Count)
             {
                 MessageBox.Show("Отсутствуют записи или не выбрана запись для корректировки");
                 return;
             }
-            int idx = gridViewCSV.SelectedCells[0].RowIndex;
 
             CSVRow row = _container.rows[idx];
 
