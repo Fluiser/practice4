@@ -225,7 +225,7 @@ namespace practice4
                 ) == DialogResult.OK)
             {
                 int removed = 0;
-                var cells = gridViewCSV.SelectedCells.Cast<DataGridViewCell>().Select(cell => cell.RowIndex).Distinct();
+                var cells = gridViewCSV.SelectedCells.Cast<DataGridViewCell>().Select(cell => cell.RowIndex).Distinct().OrderBy(i => i);
                 foreach(int idx in cells)
                 {
                     _container.deleteRecord(idx - removed++);
